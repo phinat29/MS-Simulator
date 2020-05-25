@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
+  "git": "https://github.com/phinat29/MS-Simulator.git",
   "scripts": {
     "start": "electron ."
   },
