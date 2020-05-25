@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <script type="text/javascript" src="showImg.js"></script>
+    <title>Monster Sanctu Simulator</title>
+  </head>
+  <body onload="loadImgM(); loadList();">
+    <div class="List">
+      <div class="img"></div>
+      <div class="info"></div>
+      <div class="IF">
+        <div class="item"></div>
+        <div class="food"></div>
+        <div class="ListIF">
+          <div id="Weap"></div>
+          <div id="Items"></div>
+          <div id="Food"></div>
+        </div>
+      </div>
+      <div class="Fight"></div>
+    </div>
+  </body>
+</html>

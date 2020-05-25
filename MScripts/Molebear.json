@@ -1,0 +1,16 @@
+{
+    "id": "Akhlut",
+    "RStats": { "ADR": 7, "APR": 5, "HPR": 7, "DR": 3, "MaR": 5, "lvl": 1, "CC": 0.1, "CD": 0.5 },
+    "baseStats": null,
+    "Passiv": {  },
+    "Activ": {  },
+    "treeDes": [[[], [], [], []], [[], [], [], []], [[], [], [], []]],
+    "treeInfo": [[[], [], [], []], [[], [], [], []], [[], [], [], []]],
+    "treeBool": [
+        [[false], [false, false, false, false], [false, false, false, false], [false, false, false, false]],
+        [[false], [false, false, false, false], [false, false, false, false], [false, false, false, false]],
+        [[false], [false, false, false, false], [false, false, false, false], [false, false, false, false]]
+    ],
+    "item": null,
+    "food": null
+}
