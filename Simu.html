@@ -16,13 +16,27 @@
       <div class="img"></div>
       <div class="info"></div>
       <div class="IF">
-        <div class="item"></div>
-        <div class="food"></div>
+        <div class="item">
+		  <h5>Items</h5>
+		  Weapons: <input type="text" id="weapon" class="setToNull" onclick="selectWeap(event, 'weapon')" oninput="ChoiceW(event, 'weapon')"><br>
+		  <br>Item1: <input type="text\" id="item1" class="setToNull" onclick="selectWeap(event, 'item')" oninput="ChoiceW(event, 'item1')">
+		  <br>Item2: <input type="text\" id="item2" class="setToNull" onclick="selectWeap(event, 'item')" oninput="ChoiceW(event, 'item2')">
+		  <br>Item3: <input type="text\" id="item3" class="setToNull" onclick="selectWeap(event, 'item')" oninput="ChoiceW(event, 'item3')">
+        </div>
+        <div class="food">
+			<h5>Food</h5>
+			Food1: <input type="text" id="food0" class="setToNull" onclick="selectWeap(event, 'food')" oninput="ChoiceW(event, 'food0')"><br>
+			Food2: <input type="text" id="food1" class="setToNull" onclick="selectWeap(event, 'food')" oninput="ChoiceW(event, 'food0')"><br>
+			Food3: <input type="text" id="food2" class="setToNull" onclick="selectWeap(event, 'food')" oninput="ChoiceW(event, 'food0')">
+		</div>
         <div class="ListIF">
           <div id="Weap"></div>
           <div id="Items"></div>
           <div id="Food"></div>
-        </div>
+		</div>
+		<div>
+			<button id="ResetItems" onclick="resetItems()">Reset</button>
+		</div>
       </div>
       <div class="Fight"></div>
     </div>

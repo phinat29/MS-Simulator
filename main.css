@@ -95,7 +95,6 @@ body {
 .food {
     grid-row: 1;
     grid-column: 2;
-    background-color: blue;
 }
 .ListIF {
     grid-row: 2;
@@ -120,8 +119,11 @@ h5 { margin-bottom: 5px; margin-top: 5px; }
 }
 .toselW {
     width: 1fr;
+    cursor: pointer;
 }
 .toselW:hover {
-    cursor: pointer;
     background-color: rgba(60, 109, 141, 0.5);
+}
+.setToNull {
+    width: 75%;
 }

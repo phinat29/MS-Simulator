@@ -24,7 +24,9 @@ function selectImgM(e) {
         var info = document.getElementsByClassName("info")[0]
         info.innerHTML = infoDiv()
         document.getElementsByClassName("IF")[0].style.visibility = "visible"
-        document.getElementsByClassName("item")[0].innerHTML = setButtonI()
+        for( var i in document.getElementsByClassName('setToNull')) {
+            document.getElementsByClassName('setToNull')[i].value = ""
+        }
     }
 }
 function buttonClick(e) {
@@ -52,21 +54,25 @@ function buttonClick(e) {
     }
 }
 function infoDiv() {
-    var stats = {AD: 0, AP: 0, D: 0, HP: 0, Ma: 0, CC: 0, CD: 0}
+    var stats = {AD: 0, AP: 0, D: 0, HP: 0, Ma: 0, CC: 0.0, CD: 0.0}
     for (var i in Items) {
         if (i == 0) {
             var splited = IF.weap[Items[i].id].base[Items[i].up].des.split(" ")
             for (var k in splited) {
                 var split2 = splited[k].split(":")
-                stats[split2[0]] += parseInt(split2[1])
+                stats[split2[0]] += parseFloat(split2[1])
             }
         }else{
             var splited = IF.item[Items[i].id].base[Items[i].up].des.split(" ")
             for (var k in splited) {
                 var split2 = splited[k].split(":")
-                stats[split2[0]] += parseInt(split2[1])
+                stats[split2[0]] += parseFloat(split2[1])
             }
         }
+    }
+    for (var i in Food) {
+        var splited = IF.food[Food[i].id].des.split(':')
+        stats[splited[0]] += parseFloat(splited[1])
     }
 
     var info = "<img id=\"" + monster.id + "\"class=\"spriteM zoom showInfo\" src=\"" + folder + "/" + monster.id + ".png" + "\">"+ monster.id
@@ -112,18 +118,29 @@ function selectWeapList(s, e, k) {
     document.getElementById("Weap").style.display = "none"
     var id = s.parentElement.id
     document.getElementById(lastSelect).value = id+"+"+k
-    Items[0] = { id: id, item: IF.weap[id], up: k }
+    if (IF.weap[id]) {
+        Items[0] = { id: id, item: IF.weap[id], up: k }
+    }
 }
 function selectItemList(s, e, k) {
     document.getElementById("Items").style.display = "none"
     var id = s.parentElement.id
     document.getElementById(lastSelect).value = id+"+"+k
     var nb = lastSelect.slice(-1)
-    Items[nb] = { id: id, item: IF.item[id], up: k}
+    if (IF.item[id]) {
+        Items[nb] = { id: id, item: IF.item[id], up: k}
+    }
+}
+function selectFoodList(s, e) {
+    document.getElementById("Food").style.display = "none"
+    var id = s.parentElement.id
+    document.getElementById(lastSelect).value = id
+    var nb = lastSelect.slice(-1)
+    if (IF.food[id]) {
+        Food[nb] = {id: id, item: IF.food[id]}
+    }
 }
 function loadList() {
-    var docitem = document.getElementsByClassName("item")[0]
-    docitem.innerHTML = setButtonI()
     var docWeap = document.getElementById("Weap")
     docWeap.innerHTML = ""
     for (var i in IF.weap) {
@@ -136,23 +153,20 @@ function loadList() {
         docItem.innerHTML += "<div class=\"showToSelect\" id=\""+i+"\">" + showUpgrade(i, "items")
         docItem.innerHTML += "</div>"
     }
-}
-function setButtonI() {
-    var select = "<h5>Items</h5>"
-    select += "Weapons: <input type=\"text\" id=\"weapon\" onclick=\"selectWeap(event, 'weapon')\" oninput=\"ChoiceW(event, 'weapon')\"><br>"
-    for (var i = 1; i < 4; i++) {
-        select += "<br><input type=\"text\" id=\"item"+i+"\" onclick=\"selectWeap(event, 'item')\" oninput=\"ChoiceW(event, 'item"+i+"')\">"
+    var docFood = document.getElementById("Food")
+    docFood.innerHTML = ""
+    for (var i in IF.food) {
+        docFood.innerHTML += "<div class=\"showToSelect\" id=\""+i+"\">" + showUpgrade(i, "food")
+        docFood.innerHTML += "</div>"
     }
-    return select
 }
-
 function ChoiceW(e, ID) {
     var value = document.getElementById(ID).value
-    if (value) {
+    if (value != null) {
         if (ID == "weapon") {
             for (var i in IF.weap) {
                 var d = document.getElementById(i)
-                if (i.substring(0, value.length) == value) {
+                if (i.substring(0, value.length) == value || value=="") {
                     d.style.display = "block"
                 } else {
                     d.style.display = "none"
@@ -161,7 +175,16 @@ function ChoiceW(e, ID) {
         }else if (ID.substring(0, ID.length-1) == "item") {
             for (var i in IF.item) {
                 var d = document.getElementById(i)
-                if (i.substring(0, value.length) == value) {
+                if (i.substring(0, value.length) == value || value=="") {
+                    d.style.display = "block"
+                } else {
+                    d.style.display = "none"
+                }
+            }
+        }else if (ID.substring(0), ID.length-1 == "food") {
+            for (var i in IF.food) {
+                var d = document.getElementById(i)
+                if (i.substring(0, value.length) == value || value=="") {
                     d.style.display = "block"
                 } else {
                     d.style.display = "none"
@@ -174,21 +197,29 @@ function showUpgrade(i, ID) {
     var a  = ""
     if (ID  == "weapon") {
         for(var k in IF.weap[i].base){
-            a += "<div class=\"toselW\" onclick=\"selectWeapList(this, event, "+k+")\">"+i+"+"+k+" :: "+IF.weap[i].base[k].des+"</div>"
+            a += "<div class=\"toselW\" onclick=\"selectWeapList(this, event, "+k+")\">"+i+"+"+k+" :: "+IF.weap[i].base[k].des+"<br>"
+            if (IF.weap[i].base[k].spe) {
+                a += "<span>Spe : "+IF.weap[i].base[k].spe+"</span>"
+            }
+            a += "</div>"
         }
-        if (IF.weap[i].spe) {
-            a += "<span>Spe : "+IF.weap[i].spe+"</span>"
-        }
-    }else if(ID == "items") {
+    }else if (ID == "items") {
         for(var k in IF.item[i].base){
             a += "<div class=\"toselW\" onclick=\"selectItemList(this, event, "+k+")\">"+i+"+"+k+" :: "+IF.item[i].base[k].des+"</div>"
         }
         if (IF.item[i].spe) {
             a += "<span>Spe : "+IF.item[i].spe+"</span>"
         }
+    }else if (ID == "food") {
+        a += "<div class=\"toselW\" onclick=\"selectFoodList(this, event)\">"+i+" :: "+IF.food[i].des+"</div>"
     }
     return a
-}let Stats = {hp: 100} 
- module.exports = {
-     Stats: Stats
+}
+function resetItems() {
+    Food = []
+    Items = []
+
+    for (var i in document.getElementsByClassName('setToNull')) {
+        document.getElementsByClassName('setToNull')[i].value = ""
+    }
 }
