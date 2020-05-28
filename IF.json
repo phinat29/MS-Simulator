@@ -47,7 +47,55 @@
             {"des": "AP:60 MaRe:16"},
             {"des": "AP:90 MaRe:21"},
             {"des": "AP:130 MaRe:25"},
-            {"des": "AP:180 MaRe:32"}]}
+            {"des": "AP:180 MaRe:32"}]},
+        "Staff": { "base": [
+            {"des": "AP:40 CC:0.07"},
+            {"des": "AP:60 CC:0.08"},
+            {"des": "AP:90 CC:0.09"},
+            {"des": "AP:130 CC:0.1"},
+            {"des": "AP:180 CC:0.11"}]},
+        "Katana": { "base": [
+            {"des": "AD:30 CC:0.09 CD:0.15"},
+            {"des": "AD:45 CC:0.1 CD:0.16"},
+            {"des": "AD:65 CC:0.11 CD:0.17"},
+            {"des": "AD:95 CC:0.12 CD:0.18"},
+            {"des": "AD:135 CC:0.13 CD:0.19"}]},
+        "Scepter": { "base": [
+            {"des": "AP:35 Ma:25 MaRe:5"},
+            {"des": "AP:55 Ma:35 MaRe:7"},
+            {"des": "AP:80 Ma:45 MaRe:9"},
+            {"des": "AP:120 Ma:55 MaRe:11"},
+            {"des": "AP:170 Ma:57 MaRe:14"}]},
+        "Harp": { "base": [
+            {"des": "AP:35 MaRe:5", "spe": "Heal:0.15"},
+            {"des": "AP:50 MaRe:7", "spe": "Heal:0.16"},
+            {"des": "AP:75 MaRe:9", "spe": "Heal:0.17"},
+            {"des": "AP:110 MaRe:9", "spe": "Heal:0.18"},
+            {"des": "AP:155 MaRe:9", "spe": "Heal:0.19"}]},
+        "Shield": { "base": [
+            {"des": "AD:15 AP:15 D:25"},
+            {"des": "AD:30 AP:30 D:40"},
+            {"des": "AD:45 AP:45 D:55"},
+            {"des": "AD:65 AP:65 D:75"},
+            {"des": "AD:85 AP:85 D:98"}]},
+        "Pirate Hook": { "base": [
+            {"des": "AD:1 AP:1 CC:0.01", "spe": "Heal First Crit 1"},
+            {"des": "AD:45 AP:45 CC:0.06", "spe": "Heal First Crit 200"},
+            {"des": "AD:70 AP:70 CC:0.07", "spe": "Heal First Crit 250"},
+            {"des": "AD:100 AP:100 CC:0.08", "spe": "Heal First Crit 300"},
+            {"des": "AD:145 AP:145 CC:0.08", "spe": "Heal First Crit 350"}]},
+        "Fishing Rod": { "base": [
+            {"des": "AD:25 AP:35", "spe": "NoDammagerAction rBuff self"},
+            {"des": "AD:45 AP:55", "spe": "NoDammagerAction rBuff self"},
+            {"des": "AD:65 AP:85", "spe": "NoDammagerAction rBuff self"},
+            {"des": "AD:100 AP:120", "spe": "NoDammagerAction rBuff self"},
+            {"des": "AD:145 AP:165", "spe": "NoDammagerAction rBuff self"}]},
+        "Moon Sword": { "base": [
+            {"des": "AD:50 AP:50"},
+            {"des": "AD:75 AP:75"},
+            {"des": "AD:105 AP:105"},
+            {"des": "AD:150 AP:150"},
+            {"des": "AD:205 AP:205"}]}
     },
     "item": {
         "RandomItem": { "base": [

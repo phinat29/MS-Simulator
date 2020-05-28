@@ -2,15 +2,16 @@
     "id": "Akhlut",
     "RStats": { "ADR": 7, "APR": 5, "HPR": 7, "DR": 3, "MaR": 5, "lvl": 1, "CC": 0.1, "CD": 0.5 },
     "baseStats": null,
-    "Passiv": {  },
+    "Passiv": [  ],
     "Activ": {  },
-    "treeDes": [[[], [], [], []], [[], [], [], []], [[], [], [], []]],
-    "treeInfo": [[[], [], [], []], [[], [], [], []], [[], [], [], []]],
+    "treeDes": [
+        [["Ice_Bolt_1"], ["Magic_Plus", "Ice_Bolt_2", "Heal_1", "Precision"], ["Health_Plus", "Ice_Bolt_3", "Heal_2", "Precision"], ["Heal_Mastery", "Ice_Bolt_4", "Heal_3", "Critical_Hybridization"], ["Magic_Proc", "Ice_Bolt_5", "Heal_4", "Health_Plus"]],
+        [["Claws_1"], ["Bleed", "Claws_2", "Attack_Plus"], [], []],
+        [[], [], [], []]
+    ],
     "treeBool": [
         [[false], [false, false, false, false], [false, false, false, false], [false, false, false, false]],
         [[false], [false, false, false, false], [false, false, false, false], [false, false, false, false]],
         [[false], [false, false, false, false], [false, false, false, false], [false, false, false, false]]
-    ],
-    "item": null,
-    "food": null
+    ]
 }

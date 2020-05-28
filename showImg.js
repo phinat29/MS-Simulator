@@ -1,6 +1,7 @@
 var fs = require('fs')
 var fileIF = fs.readFileSync("IF.json")
 var IF = JSON.parse(fileIF)
+var Skills = require("./FightFiles/Skill").Skill
 
 var folder = "MSSprites"
 var fScript = "MScripts"
@@ -8,13 +9,14 @@ var monster
 var lastSelect
 var Items = []
 var Food = []
+var MonsterSelected = {Left: [null, null, null], Right: [null, null, null]}
+
 function loadImgM() {
     var files = fs.readdirSync(fScript)
     for  (var i in files) {
         document.getElementsByClassName("img")[0].innerHTML += "<input type=\"image\" id=\""+ files[i].slice(0, -5) +"\" class=\"spriteM\" src=\"" + folder + "/" + files[i].slice(0, -5) + ".png\" onmouseup=\"selectImgM(event)\">"
     }
 }
-
 function selectImgM(e) {
     if (e.which == 3) {
         var id = e.currentTarget.id
@@ -40,10 +42,6 @@ function buttonClick(e) {
             info.innerHTML = infoDiv()
             break;
         case "transfer":
-
-            //fin
-            info.innerHTML = ""
-            monster = null
             break;
         case "reset":
             var id = monster.id
@@ -91,9 +89,32 @@ function infoDiv() {
         monster.baseStats.reduc = (lvlP + monster.baseStats.D) / (lvlP * 10 + monster.baseStats.D)
     }
     info += "<div class=\"StatsListNB\">Attack : "+ parseInt(monster.baseStats.AD) +"<br>Magic : "+ parseInt(monster.baseStats.AP) +"<br>Defense : "+ parseInt(monster.baseStats.D) +"<br>HP : "+ parseInt(monster.baseStats.HP) +"<br>Mana : "+ parseInt(monster.baseStats.Ma) +"<br><br>"
-    info  += "Crit Chance : "+ (monster.RStats.CC+stats.CC) *100 +"%<br>Crit Damage : "+ (monster.RStats.CD+stats.CD) *100 +"%<br>Damage Reduc : "+ Math.trunc(monster.baseStats.reduc *100) +"%"
+    info  += "Crit Chance : "+ (monster.RStats.CC+ monster.baseStats? stats.CC : 0) *100 +"%<br>Crit Damage : "+ (monster.RStats.CD+ monster.baseStats? stats.CD : 0) *100 +"%<br>Damage Reduc : "+ Math.trunc(monster.baseStats.reduc *100) +"%"
     info += "</div></div>"
-    info += ""//div competences
+    var gridtc = ""
+    for (var i = 0; i < monster.treeBool.length; i++) { gridtc += "1fr " }
+    info += "<div class=\"treeSkill\" style=\"grid-template-columns: "+gridtc+ ";\">"
+    for (var u in monster.treeDes) {
+        info += "<div class=\"showSkill\" style=\"grid-column:" + (parseFloat(u) + 1) +"\">"
+        for (var i in monster.treeDes[u]) {
+            for (var k in monster.treeDes[u][i]) {
+                var toShow
+                var lastchar = null
+                if (parseInt(monster.treeDes[u][i][k].slice(-1)) >= 0 && parseInt(monster.treeDes[u][i][k].slice(-1)) <= 9) {
+                    toShow = monster.treeDes[u][i][k].substring(0, monster.treeDes[u][i][k].length-2)
+                    lastchar = parseInt(monster.treeDes[u][i][k].slice(-1)) - 1
+                }else{
+                    toShow = monster.treeDes[u][i][k]
+                }
+                info += "<img class=\"spritesSkill\" onclick=\"AddSkill(this, '"+toShow+"', "+lastchar+")\" onmouseover=\"showInfoSkill('"+toShow+"', "+lastchar+")\" src=\"SkillSprites/"+toShow+".png\">"
+            }
+            info += "<br>"
+        }
+        info += "</div>"
+    }
+    info += "</div>"
+    info += "<div class=\"infoSkill\">"
+    info += "</div>"
     return info
 }
 function selectWeap(e, ID) {
@@ -199,7 +220,7 @@ function showUpgrade(i, ID) {
         for(var k in IF.weap[i].base){
             a += "<div class=\"toselW\" onclick=\"selectWeapList(this, event, "+k+")\">"+i+"+"+k+" :: "+IF.weap[i].base[k].des+"<br>"
             if (IF.weap[i].base[k].spe) {
-                a += "<span>Spe : "+IF.weap[i].base[k].spe+"</span>"
+                a += "<span class=\"Spe\">Spe : "+IF.weap[i].base[k].spe+"</span>"
             }
             a += "</div>"
         }
@@ -208,7 +229,7 @@ function showUpgrade(i, ID) {
             a += "<div class=\"toselW\" onclick=\"selectItemList(this, event, "+k+")\">"+i+"+"+k+" :: "+IF.item[i].base[k].des+"</div>"
         }
         if (IF.item[i].spe) {
-            a += "<span>Spe : "+IF.item[i].spe+"</span>"
+            a += "<span class=\"Spe\">Spe : "+IF.item[i].spe+"</span>"
         }
     }else if (ID == "food") {
         a += "<div class=\"toselW\" onclick=\"selectFoodList(this, event)\">"+i+" :: "+IF.food[i].des+"</div>"
@@ -223,3 +244,25 @@ function resetItems() {
         document.getElementsByClassName('setToNull')[i].value = ""
     }
 }
+function showInfoSkill(stringi, up) {
+    var infoS = document.getElementsByClassName('infoSkill')[0]
+    infoS.innerHTML = ""
+    infoS.style.visibility = "visible"
+    console.log(up)
+    if (up >= 0) {
+        infoS.innerHTML += stringi
+    }
+}
+function AddSkill(s, stringi, up) {
+    s.style.filter = "brightness(1)"
+}
+function StartFight() {
+    const remote = require('electron').remote;
+    const BrowserWindow = remote.BrowserWindow;
+    const win = new BrowserWindow({
+      height: 600,
+      width: 800
+    });
+    win.setMenuBarVisibility(false)
+    win.loadURL('file://FightFiles/index.html');
+  }
