@@ -6,8 +6,9 @@
     "Activ": {  },
     "treeDes": [
         [["Ice_Bolt_1"], ["Magic_Plus", "Ice_Bolt_2", "Heal_1", "Precision"], ["Health_Plus", "Ice_Bolt_3", "Heal_2", "Precision"], ["Heal_Mastery", "Ice_Bolt_4", "Heal_3", "Critical_Hybridization"], ["Magic_Proc", "Ice_Bolt_5", "Heal_4", "Health_Plus"]],
-        [["Claws_1"], ["Bleed", "Claws_2", "Attack_Plus"], [], []],
-        [[], [], [], []]
+        [["Claws_1"], ["Bleed", "Claws_2", "Attack_Plus"], ["Scent_Blood", "Claws_3", "Bite_1", "Defense_Plus"], ["Mana_Plus", "Claws_4", "Bite_2", "Healing_Shield"], ["Aquatic_Predator", "Claws_5", "Bite_4", "Health_Plus"]],
+        [["Aqua_Blast_1"], ["Health_Plus", "Aqua_Blast_2", "Critical_Liquid"], ["Critical_Freeze", "Aqua_Blast_3", "Life_Stability", "Critical_Hybridization"], ["Multichill", "Aqua_Blast_4", "Ice_Spear_Volley_1", "Water_Affinity"], ["Crit_Chance_Plus", "Aqua_Blast_5", "Ice_Spear_Volley_2", "Critical_Defense"]],
+        [["Might"], ["Crit_CHance_Plus", "Templar_1", "Auto_Heal"], ["Magic_PLus", "Templar_2", "Revive_1", "Mana_Upkeep"], ["Crit_Damage_Plus", "Templar_3", "Revive_2", "Mana_Upkeep"], ["Magic_Powered_Shield", "Duality",  "Revive_3", "Health_Plus"]]
     ],
     "treeBool": [
         [[false], [false, false, false, false], [false, false, false, false], [false, false, false, false]],
