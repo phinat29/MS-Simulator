@@ -17,7 +17,7 @@ function loadImgM() {
     }
 }
 function selectImgM(s, e) {
-    if (e.which == 3) {
+    //if (e.which == 3) {
         var id = s.children[0].id
         if (monster) { if (id == monster.id) { return ; } }
         monster = fs.readFileSync(fScript + "/" + id + ".json")
@@ -29,7 +29,7 @@ function selectImgM(s, e) {
         for( var i in document.getElementsByClassName('setToNull')) {
             document.getElementsByClassName('setToNull')[i].value = ""
         }
-    }
+    //}
 }
 function buttonClick(e) {
     var id = e.currentTarget.id
